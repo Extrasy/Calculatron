@@ -49,11 +49,12 @@
             <button id="button-power" class="btn btn-danger operator" value="^"><h1>^</h1></button>
             <button id="button-equal" class="btn btn-success equal" value="equals"><h1>=</h1></button>
             <br><br>
+            <button id="button-(" class="btn btn-danger number" value="("><h1>(</h1></button>
+            <button id="button-)" class="btn btn-danger number" value=")"><h1>)</h1></button>
             <button id="button-clear" class="btn btn-dark clear" value="clear"><h1>clear</h1></button>
           </div>
         </div>
       </div>
-
       <!-- Result Panel -->
       <div class="col-lg-6">
         <div class="card">
@@ -69,54 +70,31 @@
       </div>
     </div>
   </div>
-
 <script type="text/javascript">
-
 $(document).ready(function() {
-  
   // Your code here...
-    $(".number").click(function() {
-
-      var x = ($(this).attr("value"));
-
-      $("#result").append(x);
-
-    });
-
-    $(".operator").click(function() {
-
+$(".number").click(function() {
+  var x = ($(this).attr("value"));
+  $("#result").append(x);
+});
+$(".operator").click(function() {
 var x = ($(this).attr("value"));
-
 $("#result").append(x);
-
 });
-
 $(".clear").click(function() {
-
 var x = "";
-
 $("#result").text(x);
-
 });
-
 $(".equal").click(function() {
-
-var x = "";
-
-console.log(eval($("#result").text()));
-
+var str = $("#result").text();
+try {
+  $("#result").text(eval(str.replace("^", "**")));
+}
+catch(err) {
+    alert("bad equation");
+}
 });
-
-
-
-
-
-
-
-
 });
-
 </script>
-
 </body>
 </html>
